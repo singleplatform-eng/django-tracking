@@ -21,12 +21,14 @@ else:
         if settings.ADMIN_MEDIA_PREFIX:
             prefixes.append(settings.ADMIN_MEDIA_PREFIX)
 
+        """
         try:
             # finally, don't track requests to the tracker update pages
             prefixes.append(reverse('tracking-refresh-active-users'))
         except NoReverseMatch:
             # django-tracking hasn't been included in the URLconf if we get here
             pass
+        """
 
         prefixes.append('!!initialized!!')
 
