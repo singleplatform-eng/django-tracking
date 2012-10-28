@@ -3,11 +3,11 @@
 
 from setuptools import setup, find_packages
 import sys, os
-import tracking
+# import tracking
 
 setup(
     name='django-tracking',
-    version=tracking.get_version(),
+    version='1.0',#tracking.get_version(),
     description="Basic visitor tracking and blacklisting for Django",
     long_description=open('README.rst', 'r').read(),
     keywords='django, tracking, visitors',
