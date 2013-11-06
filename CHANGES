@@ -2,6 +2,11 @@
 django-tracking changes
 =======================
 
+0.4.2
+-----
+
+- Fixes for Django 1.6
+
 0.3.5
 -----
 
