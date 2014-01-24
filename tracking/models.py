@@ -2,10 +2,11 @@ from datetime import datetime, timedelta
 import logging
 import traceback
 
-from django.contrib.gis.utils import HAS_GEOIP
-
-if HAS_GEOIP:
+try:
     from django.contrib.gis.utils import GeoIP, GeoIPException
+    HAS_GEOIP = True
+except ImportError:
+    HAS_GEOIP = False
 
 from django.conf import settings
 from django.contrib.auth.models import User
