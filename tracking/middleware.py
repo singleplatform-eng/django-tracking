@@ -152,7 +152,7 @@ class VisitorTrackingMiddleware(object):
         visitor.last_update = now
         try:
             visitor.save()
-        except DatabaseError:
+        except (DatabaseError, IntegrityError):
             log.error('There was a problem saving visitor information:\n%s\n\n%s' % (traceback.format_exc(), locals()))
 
 class VisitorCleanUpMiddleware:
