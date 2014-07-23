@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.core.urlresolvers import reverse, NoReverseMatch
-from django.db.utils import DatabaseError
+from django.db.utils import DatabaseError, IntegrityError
 from django.http import Http404
 
 from tracking import utils
