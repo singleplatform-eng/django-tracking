@@ -1,8 +1,10 @@
+This is a clone of ``django-tracking`` is at http://bitbucket.org/codekoala/django-tracking
+
 ``django-tracking`` is a simple attempt at keeping track of visitors to
 Django-powered Web sites.  It also offers basic blacklisting capabilities.
 
-The offial repository for ``django-tracking`` is at
-http://bitbucket.org/codekoala/django-tracking.  Please file any tickets there.
+The offial and original repository for ``django-tracking`` is at
+http://bitbucket.org/codekoala/django-tracking.
 
 Features
 ========
@@ -55,29 +57,27 @@ pip
 ---
 
 You can download the package from the `CheeseShop
-<http://pypi.python.org/pypi/django-tracking/>`_ or use::
+<http://pypi.python.org/pypi/django-tracking-jl/>`_ or use::
 
-    pip install django-tracking
+    pip install django-tracking-jl
 
 to download and install ``django-tracking``.
 
 easy_install
 ------------
 
-You can download the package from the `CheeseShop <http://pypi.python.org/pypi/django-tracking/>`_ or use::
+You can download the package from the `CheeseShop <http://pypi.python.org/pypi/django-tracking-jl/>`_ or use::
 
-    easy_install django-tracking
+    easy_install django-tracking-jl
 
 to download and install ``django-tracking``.
 
-Checkout from BitBucket/GitHub/Google Code
-------------------------------------------
+Checkout from GitHub
+--------------------
 
 Use one of the following commands::
 
-    hg clone http://bitbucket.org/codekoala/django-tracking
-    git clone http://github.com/codekoala/django-tracking.git
-    hg clone http://django-tracking.googlecode.com/hg/ django-tracking
+    git clone http://github.com/jlachowski/django-tracking.git
 
 Package Download
 ================
