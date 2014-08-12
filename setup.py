@@ -2,18 +2,17 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
-import sys, os
 import tracking
 
 setup(
-    name='django-tracking',
+    name='django-tracking-jl',
     version=tracking.get_version(),
     description="Basic visitor tracking and blacklisting for Django",
     long_description=open('README.rst', 'r').read(),
     keywords='django, tracking, visitors',
-    author='Josh VanderLinden',
-    author_email='codekoala at gmail dot com',
-    url='http://bitbucket.org/codekoala/django-tracking',
+    author='Jaroslaw Lachowski',
+    author_email='jalachowski@gmail.com',
+    url='https://github.com/jlachowski/django-tracking',
     license='MIT',
     package_dir={'tracking': 'tracking'},
     include_package_data=True,
