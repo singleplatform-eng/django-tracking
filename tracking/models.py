@@ -1,14 +1,25 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
+from django.utils import timezone
 import logging
 import traceback
 
-from django.contrib.gis.geoip import HAS_GEOIP
+try:
+    # Django < 1.6
+    from django.contrib.gis.utils import HAS_GEOIP
+    if HAS_GEOIP:
+        from django.contrib.gis.utils import GeoIP, GeoIPException
+except ImportError:
+    # Django 1.6+
+    from django.contrib.gis.geoip import HAS_GEOIP
+    if HAS_GEOIP:
+        from django.contrib.gis.geoip import GeoIP, GeoIPException
 
-if HAS_GEOIP:
-    from django.contrib.gis.utils import GeoIP, GeoIPException
-
-from django.conf import settings
-from django.contrib.auth.models import User
+try:
+    from django.conf import settings
+    User = settings.AUTH_USER_MODEL
+except AttributeError:
+    from django.conf import settings
+    from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from tracking import utils
@@ -27,7 +38,7 @@ class VisitorManager(models.Manager):
         if not timeout:
             timeout = utils.get_timeout()
 
-        now = datetime.now()
+        now = timezone.now()
         cutoff = now - timedelta(minutes=timeout)
 
         return self.get_query_set().filter(last_update__gte=cutoff)
@@ -44,6 +55,11 @@ class Visitor(models.Model):
     last_update = models.DateTimeField()
 
     objects = VisitorManager()
+
+    def __init__(self, *args, **kwargs):
+        super(Visitor, self).__init__(*args, **kwargs)
+        self.session_start = timezone.now()
+        self.last_update = timezone.now()
 
     def _time_on_site(self):
         """
