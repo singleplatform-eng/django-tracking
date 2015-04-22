@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.db.utils import DatabaseError
 from django.http import Http404
+from django.utils import timezone
 
 from tracking import utils
 from tracking.models import Visitor, UntrackedUserAgent, BannedIP
@@ -93,7 +94,7 @@ class VisitorTrackingMiddleware(object):
 
         # if we get here, the URL needs to be tracked
         # determine what time it is
-        now = datetime.now()
+        now=timezone.localtime(timezone.now())
 
         attrs = {
             'session_key': session_key,
@@ -159,7 +160,7 @@ class VisitorCleanUpMiddleware:
 
         if str(timeout).isdigit():
             log.debug('Cleaning up visitors older than %s hours' % timeout)
-            timeout = datetime.now() - timedelta(hours=int(timeout))
+            timeout = timezone.localtime(timezone.now()) - timedelta(hours=int(timeout))
             Visitor.objects.filter(last_update__lte=timeout).delete()
 
 class BannedIPMiddleware:
