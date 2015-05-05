@@ -30,7 +30,7 @@ class VisitorManager(models.Manager):
         now = datetime.now()
         cutoff = now - timedelta(minutes=timeout)
 
-        return self.get_query_set().filter(last_update__gte=cutoff)
+        return self.get_queryset().filter(last_update__gte=cutoff)
 
 class Visitor(models.Model):
     session_key = models.CharField(max_length=40)
