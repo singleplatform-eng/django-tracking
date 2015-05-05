@@ -66,7 +66,7 @@ class Visitor(models.Model):
     def _get_geoip_data(self):
         """
         Attempts to retrieve MaxMind GeoIP data based upon the visitor's IP
-        """
+        """A
 
         if not HAS_GEOIP or not USE_GEOIP:
             # go no further when we don't need to
@@ -116,7 +116,7 @@ class UntrackedUserAgent(models.Model):
         verbose_name_plural = _('Untracked User-Agents')
 
 class BannedIP(models.Model):
-    ip_address = models.IPAddressField('IP Address', help_text=_('The IP address that should be banned'))
+    ip_address = models.GenericIPAddressField('IP Address', help_text=_('The IP address that should be banned'))
 
     def __unicode__(self):
         return self.ip_address
