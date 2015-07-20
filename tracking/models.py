@@ -66,7 +66,7 @@ class Visitor(models.Model):
     def _get_geoip_data(self):
         """
         Attempts to retrieve MaxMind GeoIP data based upon the visitor's IP
-        """A
+        """
 
         if not HAS_GEOIP or not USE_GEOIP:
             # go no further when we don't need to
