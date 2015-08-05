@@ -13,7 +13,7 @@ Authored by `Josh VanderLinden <http://www.codekoala.com//>`_, and some great
 
 .. image:: https://img.shields.io/github/license/bashu/django-tracking.svg
     :target: https://pypi.python.org/pypi/django-tracking/
-             
+
 Features
 --------
 
@@ -41,11 +41,6 @@ Features
 
 Requirements
 ------------
-
-As far as I am aware, the only requirement for ``django-tracking`` to
-work is a modern version of Django.  I developed the project on Django
-1.0 alpha 2 and beta 1.  It is designed to work with the
-newforms-admin functionality.
 
 If you wish to use a Google Map to display where your visitors are probably at,
 you must have a `Google Maps API key
