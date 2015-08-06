@@ -13,6 +13,10 @@ Authored by `Josh VanderLinden <http://www.codekoala.com//>`_, and some great
 
 .. image:: https://img.shields.io/github/license/bashu/django-tracking.svg
     :target: https://pypi.python.org/pypi/django-tracking/
+
+.. image:: https://landscape.io/github/bashu/django-tracking/develop/landscape.svg?style=flat
+    :target: https://landscape.io/github/bashu/django-tracking/develop
+
 Features
 --------
 
