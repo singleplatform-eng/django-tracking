@@ -3,17 +3,7 @@ from django.utils import timezone
 import logging
 import traceback
 
-try:
-    # Django < 1.6
-    from django.contrib.gis.utils import HAS_GEOIP
-    if HAS_GEOIP:
-        from django.contrib.gis.utils import GeoIP, GeoIPException
-except ImportError:
-    # Django 1.6+
-    from django.contrib.gis.geoip import HAS_GEOIP
-    if HAS_GEOIP:
-        from django.contrib.gis.geoip import GeoIP, GeoIPException
-
+from django.contrib.gis.geoip import GeoIP, GeoIPException
 try:
     from django.conf import settings
     User = settings.AUTH_USER_MODEL
