@@ -8,9 +8,9 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.core.urlresolvers import reverse, NoReverseMatch
-from django.db.utils import DatabaseError
+from django.db.utils import DatabaseError, IntegrityError
 from django.http import Http404
-from django.utils import timezone
+from django.db import transaction
 
 from tracking import utils
 from tracking.models import Visitor, UntrackedUserAgent, BannedIP
@@ -143,7 +143,11 @@ class VisitorTrackingMiddleware(object):
         visitor.page_views += 1
         visitor.last_update = now
         try:
+            sid = transaction.savepoint()
             visitor.save()
+            transaction.savepoint_commit(sid)
+        except IntegrityError:
+            transaction.savepoint_rollback(sid)
         except DatabaseError:
             log.error('There was a problem saving visitor information:\n%s\n\n%s' % (traceback.format_exc(), locals()))
 

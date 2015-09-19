@@ -31,7 +31,7 @@ class VisitorManager(models.Manager):
         now = timezone.now()
         cutoff = now - timedelta(minutes=timeout)
 
-        return self.get_query_set().filter(last_update__gte=cutoff)
+        return self.get_queryset().filter(last_update__gte=cutoff)
 
 class Visitor(models.Model):
     session_key = models.CharField(max_length=40)
@@ -128,7 +128,7 @@ class UntrackedUserAgent(models.Model):
         verbose_name_plural = _('Untracked User-Agents')
 
 class BannedIP(models.Model):
-    ip_address = models.IPAddressField('IP Address', help_text=_('The IP address that should be banned'))
+    ip_address = models.GenericIPAddressField('IP Address', help_text=_('The IP address that should be banned'))
 
     def __unicode__(self):
         return self.ip_address
