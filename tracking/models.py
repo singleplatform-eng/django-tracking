@@ -100,6 +100,12 @@ class Visitor(models.Model):
         return clean
 
     geoip_data_json = property(_get_geoip_data_json)
+    def __unicode__(self):
+        return u'{0} at {1} '.format(
+        self.user.username,
+        self.ip_address
+    )
+
 
     class Meta:
         ordering = ('-last_update',)
