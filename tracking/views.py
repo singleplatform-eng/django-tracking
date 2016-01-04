@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.utils import timezone
 import logging
 import traceback
 
@@ -52,7 +53,7 @@ def get_active_users(request):
     """
     if request.is_ajax():
         active = Visitor.objects.active().reverse()
-        now = datetime.now()
+        now = timezone.now()
 
         # we don't put the session key or IP address here for security reasons
         try:

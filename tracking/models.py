@@ -3,17 +3,7 @@ from django.utils import timezone
 import logging
 import traceback
 
-try:
-    # Django < 1.6
-    from django.contrib.gis.utils import HAS_GEOIP
-    if HAS_GEOIP:
-        from django.contrib.gis.utils import GeoIP, GeoIPException
-except ImportError:
-    # Django 1.6+
-    from django.contrib.gis.geoip import HAS_GEOIP
-    if HAS_GEOIP:
-        from django.contrib.gis.geoip import GeoIP, GeoIPException
-
+from django.contrib.gis.geoip import GeoIP, GeoIPException
 try:
     from django.conf import settings
     User = settings.AUTH_USER_MODEL
@@ -41,12 +31,12 @@ class VisitorManager(models.Manager):
         now = timezone.now()
         cutoff = now - timedelta(minutes=timeout)
 
-        return self.get_query_set().filter(last_update__gte=cutoff)
+        return self.get_queryset().filter(last_update__gte=cutoff)
 
 class Visitor(models.Model):
     session_key = models.CharField(max_length=40)
     ip_address = models.CharField(max_length=20)
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     user_agent = models.CharField(max_length=255)
     referrer = models.CharField(max_length=255)
     url = models.CharField(max_length=255)
@@ -115,6 +105,12 @@ class Visitor(models.Model):
         return clean
 
     geoip_data_json = property(_get_geoip_data_json)
+    def __unicode__(self):
+        return u'{0} at {1} '.format(
+        self.user.username,
+        self.ip_address
+    )
+
 
     class Meta:
         ordering = ('-last_update',)
@@ -132,7 +128,7 @@ class UntrackedUserAgent(models.Model):
         verbose_name_plural = _('Untracked User-Agents')
 
 class BannedIP(models.Model):
-    ip_address = models.IPAddressField('IP Address', help_text=_('The IP address that should be banned'))
+    ip_address = models.GenericIPAddressField('IP Address', help_text=_('The IP address that should be banned'))
 
     def __unicode__(self):
         return self.ip_address
