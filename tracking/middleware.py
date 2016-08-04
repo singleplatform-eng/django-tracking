@@ -89,7 +89,9 @@ class VisitorTrackingMiddleware(object):
 
         # if we get here, the URL needs to be tracked
         # determine what time it is
-        now=timezone.localtime(timezone.now())
+        # For now we have made a fork that works with MySQL backed Django that
+        # also has the setting USE_TZ set to False (we are no longer calling `localtime()`)
+        now=timezone.now()
 
         attrs = {
             'session_key': session_key,
