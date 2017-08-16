@@ -17,7 +17,7 @@ from tracking.models import Visitor, UntrackedUserAgent, BannedIP
 
 try:
     from django.utils.deprecation import MiddlewareMixin as mw_mixin
-except:
+except ImportError:
     mw_mixin = object
 
 title_re = re.compile('<title>(.*?)</title>')
