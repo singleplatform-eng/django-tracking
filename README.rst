@@ -1,3 +1,7 @@
+.. image:: https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiNkszNHpaUTJPdnFLaWZERm9ZekN3UTU1N1I3cE1wTTdiWWhjWU5pZGJLWVFNd1hNUHVNRkczYXRLWFk2Z2xTTmNTa1gwM2cyd01ML2g4Z094RnVWb1prPSIsIml2UGFyYW1ldGVyU3BlYyI6Ilc0TGlHS1dUaE03dFJPOFciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master
+   :target: https://console.aws.amazon.com/codebuild/home?region=us-east-1#/projects/django-tracking/view
+   :alt: Build Status
+
 ``django-tracking`` is a simple attempt at keeping track of visitors
 to django-powered Web sites.  It also offers basic blacklisting
 capabilities.
